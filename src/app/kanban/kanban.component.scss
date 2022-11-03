@@ -1,0 +1,14 @@
+.content{
+
+  .title{
+    text-align: center;
+  }
+  .liste{
+    display: grid;
+    max-width: 100%;
+    margin: 0 auto;
+    vertical-align: top;
+    position: relative;
+    list-style: none;
+  }
+}

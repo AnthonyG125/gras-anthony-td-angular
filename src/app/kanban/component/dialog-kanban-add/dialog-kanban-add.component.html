@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Liste {{data.columnName}}</h1>
+<div mat-dialog-content>
+  <p>Ajouter votre liste</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Liste à ajouter</mat-label>
+    <input matInput value="" [(ngModel)]="value">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-flat-button color="primary"  [mat-dialog-close]="value" cdkFocusInitial>Ajouter</button>
+</div>

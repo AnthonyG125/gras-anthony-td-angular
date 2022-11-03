@@ -1,0 +1,59 @@
+<div class="tools">
+  <mat-form-field class="example-form-field" appearance="fill">
+    <mat-label>Nom de la liste</mat-label>
+    <input matInput type="text" [(ngModel)]="value">
+    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-fab color="primary" aria-label="add icon" (click)="onAddColumn(value)">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div class="cards-list">
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    [cdkDropListData]="Cards"
+    class="test"
+    (cdkDropListDropped)="drop($event)">
+    <div class="cards"  *ngFor="let card of Cards"  [ngStyle]="{'border-top' : card.background}" cdkDrag>
+
+          <button class="button-close" mat-icon-button aria-label="close icon" (click)="onCloseColumn(card.title)" >
+            <mat-icon>close</mat-icon>
+          </button>
+          <div class="cards-title">
+            <h2>{{card.title}}</h2>
+          </div>
+          <div class="cards-list">
+            <div
+              cdkDropList
+              [cdkDropListData]="card.item"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              <div class="example-box" *ngFor="let item of card.item" cdkDrag>
+                <ol>
+                  <li class="list-item" #item>
+                    <h3>{{item}}</h3>
+                    <div class="item-text">
+                      <button class="button-list" mat-icon-button aria-label="update icon" (click)="openDialogUpdate(item, card.item)">
+                        <mat-icon>update</mat-icon>
+                      </button>
+                      <button class="button-list"  mat-icon-button aria-label="delete icon" (click)="onDeleteItem(card.item,item)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="addbutt" (click)="openDialog(card.title, card.item)">Add new</button>
+          </div>
+      </div>
+    </div>
+</div>
+
+
+
